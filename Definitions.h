@@ -8,8 +8,8 @@
 #ifndef DEFINITIONS_H_
 #define DEFINITIONS_H
 //-----------------------------------------------------
-#define F_CPU 16000000		//FREQUENCIA DO OSCILADOR
-#define BAUD 9600		//VELOCIDADE DE COMUNICA�AO SERIAL
+#define F_CPU 16000000		//OSCILATOR FREQUENCY
+#define BAUD 9600		//VELOCIDADE DE COMUNICAÇAO SERIAL
 #include <avr/io.h>
 #include <avr/pgmspace.h>	//GRAVA��O E LEITURA EM MEMORIA FLASH
 #include <avr/interrupt.h>	//INTERRUP�OES
