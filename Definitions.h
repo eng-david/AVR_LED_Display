@@ -9,7 +9,7 @@
 #define DEFINITIONS_H
 //-----------------------------------------------------
 #define F_CPU 16000000		//OSCILATOR FREQUENCY
-#define BAUD 9600		//VELOCIDADE DE COMUNICAÇAO SERIAL
+#define BAUD 9600		//SERIAL BAUD RATE
 #include <avr/io.h>
 #include <avr/pgmspace.h>	//GRAVA��O E LEITURA EM MEMORIA FLASH
 #include <avr/interrupt.h>	//INTERRUP�OES
