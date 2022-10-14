@@ -1,4 +1,4 @@
-# cosmos
+# AVR LED Display
 
 This software implements in AVR Atmega328 microcontroller a driver for monocrome 16*x8 display with horizontal animation, 
 for 0-1 and A-Z characters.
