@@ -9,53 +9,63 @@
 #include "Definitions.h"
 
 //CARACTERES. 
-PROGMEM const unsigned char IMAGES[39][5]  = {		//IMAGES[DIGITO][LINHA]   
+PROGMEM const unsigned char IMAGES[39][7]  = {		//IMAGES[DIGITO][LINHA]   
 	    {
+		0x05,
 		0b00001110,
 		0b00011001,		 //0	
 		0b00010011,
 		0b00001110			
 	    },{
+		0x05,	
 		0b00010000,
 		0b00010010,
 		0b00011111,     //1
 		0b00010000		
 		},{
+		0x05,	
 		0b00010010,
 		0b00011001,		//2
 		0b00010101,
 		0b00010010	
 		},{
+		0x05,	
 		0b00010001,
 		0b00010101,		//3
 		0b00010101,
 		0b00001010
 		},{
+		0x05,	
 		0b00000011,
 		0b00000100,		//4
 		0b00000100,
 		0b00011111
 		},{
+		0x05,
 		0b00010111,
 		0b00010101,		//5
 		0b00010101,
 		0b00001001
 	    },{
+		0x05,
 		0b00001110,
 		0b00010101,		//6
 		0b00010100,
 		0b00001000
 		},{
+		0x05,	
 		0b00010001,
 		0b00001001,		//7
 		0b00000101,
 		0b00000011
 		},{
+		0x05,	
 		0b00001010,
 		0b00010101,		//8
 		0b00010101,
 		0b00001010
 		},{
+		0x05,	
 		0b00000010,
 		0b00000101,		//9
 		0b00000101,
@@ -63,147 +73,181 @@ PROGMEM const unsigned char IMAGES[39][5]  = {		//IMAGES[DIGITO][LINHA]
 		},{
 		0b00001010		//:		
 		},{
-		0b00000001,
-		0b00000000		//VAZIO		
-		},{		
-		0b00011110,
-		0b00001001,		//A
-		0b00001001,
-		0b00011110
+		0x05,	
+		0b00000000,		//VAZIO
+		0b00000000,
+		0b00000000,
+		0b00000000				
+		},{	
+		0x07,		
+		0b11111100,
+		0b11111110,
+		0b00110011,		//A
+		0b00110011,
+		0b11111110,
+		0b11111100
 		},{
+		0x05,	
 		0b00011111,
 		0b00010101,		//B
 		0b00010101,
 		0b00001010		
 		},{
+		0x05,	
 		0b00001110,
 		0b00010001,		//C
 		0b00010001,
 		0b00010001
 		},{
+		0x05,	
 		0b00011111,
 		0b00010001,		//D
 		0b00010001,
 		0b00001110
 		},{
+		0x05,	
 		0b00011111,
 		0b00010101,		//E
 		0b00010101,
 		0b00010001
 		},{
+		0x05,	
 		0b00011111,
 		0b00000101,		//F
 		0b00000101,
 		0b00000101
 		},{
+		0x05,	
 		0b00011111,
 		0b00010001,		//G
 		0b00010101,
 		0b00001101
 		},{
+		0x05,	
 		0b00011111,
 		0b00000100,		//H
 		0b00000100,
 		0b00011111
-		},{		
+		},{	
+		0x03,		
 		0b00010001,
 		0b00011111,		//I
 		0b00010001
 		},{
+		0x05,
 		0b00001001,
 		0b00010001,		//J
 		0b00001111,
 		0b00000001
 		},{
+		0x05,	
 		0b00011111,
 		0b00000100,		//K
 		0b00001100,
 		0b00010011
 		},{
+		0x05,	
 		0b00011111,
 		0b00010000,		//L
 		0b00010000,
 		0b00011000
 		},{
+		0x05,	
 		0b00011111,
 		0b00000010,		//M
 		0b00000100,
 		0b00000010,
 		0b00011111
 		},{
+		0x05,	
 		0b00011111,
 		0b00000010,		//N
 		0b00000100,
 		0b00001000,
 		0b00011111
 		},{
+		0x05,	
 		0b00001110,
 		0b00010001,		//O
 		0b00010001,
 		0b00001110
 		},{
+		0x05,	
 		0b00011111,
 		0b00000101,		//P
 		0b00000101,
 		0b00000010
 		},{
+		0x06,	
 		0b00011111,
 		0b00010001,		//Q
 		0b00011001,
 		0b00011111,
 		0b00010000
 		},{
+			0x05,
 		0b00011111,
 		0b00000101,		//R
 		0b00001101,
 		0b00010010
 		},{
+			0x05,
 		0b00010110,
 		0b00010101,		//S
 		0b00010101,
 		0b00011001
 		},{
+			0x06,
 		0b00000011,
 		0b00000001,		//T
 		0b00011111,
 		0b00000001,
 		0b00000011
 		},{
+			0x05,
 		0b00001111,
 		0b00010000,		//U
 		0b00010000,
 		0b00001111
 		},{
+			0x06,
 		0b00000111,
 		0b00001000,		//V
 		0b00010000,
 		0b00001000,
 		0b00000111		
 		},{
+			0x06,
 		0b00001111,
 		0b00010000,		//W
 		0b00001110,
 		0b00010000,
 		0b00001111
 		},{
+			0x06,
 		0b00010001,
 		0b00001010,		//X
 		0b00000100,
 		0b00001010,
 		0b00010001
 		},{
+			0x05,
 		0b00000011,
 		0b00011100,		//Y
 		0b00000010,
 		0b00000001
 		},{
+			0x05,
 		0b00011001,
 		0b00010101,		//Z
 		0b00010011,
 		0b00010001
 		},{
-		0b10000000,
-		0b10000000		//ESPAÇO	
+			0x05,
+		0b00000000,
+		0b00000000,
+		0b00000000,
+		0b00000000		//ESPAÇO	
 		}
 };
 
@@ -216,9 +260,9 @@ char BUFFER[BUFFER_SIZE];
 //VARIAVEIS GLOBAIS
 
 volatile char var_flags					= 0x00;
-volatile unsigned int buffer_data_size	= 0x00;		//UTILIZADA POR ANIMACAO TIPO2
+volatile unsigned int buffer_data_size	= 0x00;		//UTILIZADA POR ANIMACAO HORIZONTAL SCROLL
 volatile int  eeprom_address			= 0x00;		//UTILIZADA PELA INTERRUPCAO SERIAL
-volatile unsigned char animation2		= 0x00;		//VARIAVEL UTILIZADA POR TIMER1
+volatile unsigned char h_scroll		= 0x00;			//VARIAVEL UTILIZADA POR TIMER1
 volatile unsigned char line				= 0x00;		//VARIAVEL UTILIZADA POR TIMER0
 volatile unsigned char tmr2_aux         = 0x00;
 
@@ -244,32 +288,32 @@ void setup();													//CONFIGURA FLAGS SALVAS EM EEPROM
 
 ISR(TIMER0_OVF_vect)	//RESPONSAVEL POR CHAMAR A FUNCAO 'DISPLAY'
 {	
-	display(BUFFER, animation2, line);	
+	display(BUFFER, h_scroll, line);	
 	line ++;
 	if(line >= DISP_ROWS_QTY)
 		line = 0x00;	
 }
 
-ISR(TIMER1_OVF_vect)	//RESPONSAVEL POR: ANIMACAO TIPO 2
+ISR(TIMER1_OVF_vect)	//RESPONSAVEL POR: HORIZONTAL SCROLL
 {
-	//CASO VALOR DE animation2 FOR 0, O DISPLAY ESTAR EXIBINDO EM SUA ULTIMA COLUNA O CONDEUDO, OU SEJA O DISPLAY NUNCA FICAR VAZIO.
-	//PARA CENTRALIZAR O TEXTO O VALOR DE animation2 DEVE SER DISP_COLUMNS_QTY-1
+	//CASO VALOR DE h_scroll FOR 0, O DISPLAY ESTAR EXIBINDO EM SUA ULTIMA COLUNA O CONDEUDO, OU SEJA O DISPLAY NUNCA FICAR VAZIO.
+	//PARA CENTRALIZAR O TEXTO O VALOR DE h_scroll DEVE SER DISP_COLUMNS_QTY-1
 	
 	TCNT1L = 0XEE;										//INICIALIZA TIMER1 EM 34286
 	TCNT1H = 0X85;										//...	
 	
-	if (buffer_data_size>DISP_COLUMNS_QTY)						//O CONTEUDO DO TEXTO E MAIOR QUE O DISPLAY?
-	{													//SIM, EXECUTA ANIMACAO TIPO 2
-		animation2 ++;
-		if (animation2 >= (buffer_data_size+DISP_COLUMNS_QTY)-1)	//TEXTO ROLOU COMPLETAMENTE?
+	if (buffer_data_size>DISP_COLUMNS_QTY)				//O CONTEUDO DO TEXTO E MAIOR QUE O DISPLAY?
+	{													//SIM, EXECUTA HORIZONTAL SCROLL
+		h_scroll ++;
+		if (h_scroll >= (buffer_data_size+DISP_COLUMNS_QTY)-1)	//TEXTO ROLOU COMPLETAMENTE?
 		{
-			animation2 = 0x00;							//RESETA
+			h_scroll = 0x00;							//RESETA
 		}
 	}
 	
 	else
 	{													//NAO?			
-		animation2  = DISP_COLUMNS_QTY-1;						//CENTRALIZA TEXTO
+		h_scroll  = DISP_COLUMNS_QTY-1;					//CENTRALIZA TEXTO
 		TIMSK1 = 0X00;									//TIMER1 NAO SE FAZ NECESSARIO ATE PROXIMO REBUFFER
 	}
 	
@@ -357,9 +401,6 @@ int main(void)
 	PORTD = 0b00000000;		//INICIA PORTD
 	DDRD  = 0b00111000;		//DEFINE IOs
 	
-	//DDRB  = 0b11111111;		//DEFINE IOs
-	//PORTB = 0b00000000;		//INICIA PORTB 
-	
 	cli();			//DESABILITA AS INTERRUPCOES _ RECOMENDADO PELO FABRICANTE	
 	
 		// --- TIMER0 -> RESPONSAVEL POR CHAMADA DE FUNCAO 'DISPLAY' ---
@@ -423,22 +464,9 @@ void re_buffer(char *data)	//FUNCAO RESPONSAVEL POR ALIMENTAR A VARIAVEL BUFFER
 		
 		// --- FIM BLOCO CONVERSAO ANSCII ---
 		
-		
-		// --- BLOCO CONTAR TAMANHO DO CARACTER ---
-		chr_size = 0x00;
-		while (pgm_read_byte(&IMAGES[caracter][chr_size]) != 0x00)	
-		{
-			chr_size++;				
-			if (chr_size > 0x05)		//NECESSARIO PARA CARACTERES GRANDES, EX: M, N, W ...
-			{
-				chr_size = 0x05;		//TAMANHO MAXIMO DOS CARACTERES
-				break;					//SAI DO LAÇO while
-			}
-		}
-		// --- FIM BLOCO CONTAR TAMANHO DO CARACTER ---
 				
-				
-		for(unsigned char i=0x00; i < chr_size; i++)		//ALIMENTA VARIAVEL BUFFER RESPEIRANDO O TAMANHO DO CARACTERE
+		chr_size = pgm_read_byte(&IMAGES[caracter][0]);		
+		for(unsigned char i=0x01; i < chr_size; i++)		//ALIMENTA VARIAVEL BUFFER RESPEIRANDO O TAMANHO DO CARACTERE
 		{
 			BUFFER[buffer_index] = pgm_read_byte(&IMAGES[caracter][i]);			
 			buffer_index++;
@@ -451,7 +479,7 @@ void re_buffer(char *data)	//FUNCAO RESPONSAVEL POR ALIMENTAR A VARIAVEL BUFFER
 		if((data_index > BUFF_DATA_LIMIT) ||(buffer_index>BUFFER_SIZE-DISP_COLUMNS_QTY))			//CONDICAO DE ERRO, CASO A LEITURA CHEGUE A LIMITE ESTIPULADO
 			/*
 				LIMITE 1: LIMITE DA EEPROM
-				LIMITE 2: LIMITE DO BUFFER, CONSIDERANDO ESPAÇO PARA O FIM NA ANIMAÇAO TIPO 2
+				LIMITE 2: LIMITE DO BUFFER, CONSIDERANDO ESPAÇO PARA O FIM NA ANIMAÇAO HORIZONTAL SCROLL
 			*/
 			break;
 					
@@ -472,7 +500,7 @@ void display(char *data, unsigned char anim2, unsigned char linha)		//FUNCAO RES
 	
 		
 	// --- BLOCO PARA DADOS (CARACTERES) ---
-	if(DISP_COLUMNS_QTY>anim2)	//PROCESSO INICIAL DE ANIMAÇAO TIPO2 QUANDO OS CARACTERES CHEGAM DO LADO DIREITO E PREENCHEM COMPLETAMENTE O DISPLAY
+	if(DISP_COLUMNS_QTY>anim2)	//PROCESSO INICIAL DE ANIMAÇAO HORIZONTAL SCROLL QUANDO OS CARACTERES CHEGAM DO LADO DIREITO E PREENCHEM COMPLETAMENTE O DISPLAY
 	{					// DISPLAY: [____<-XXXX]
 	
 		for(i=anim2; i != 0xFF; i--)			//LAÇO RESPONSAVEL POR CONTROLAR OS BITS INDIVIDUAIS DOS CARACTERES
@@ -506,13 +534,13 @@ void setup()
 {
 	unsigned char settings = EEPROM_Read(999);
 		
-	// --- BLOCO CONTROLE DE VELOCIDADE DE ANIMACAO TIPO 2 ---
+	// --- BLOCO CONTROLE DE VELOCIDADE DE HORIZONTAL SCROLL ---
 	// CONSIDERA-SE AQUI QUE A INTERRUPCAO GLOBAL ESTEJA DESABILITADA
 	if(test_bit(settings,6))
 	TCCR1B = 0X03;			//AJUSTA PRESCALER DO TIMER RESPONSAVEL PELA ANIMACAO
 	else
 	TCCR1B = 0X04;
-	// --- BLOCO CONTROLE DE VELOCIDADE DE ANIMACAO TIPO 2 ---	
+	// --- BLOCO CONTROLE DE VELOCIDADE DE HORIZONTAL SCROLL ---	
 	
 }
 
@@ -526,7 +554,7 @@ void sleep_mode(char mode){
 		}
 	}
 	else {
-		animation2  = 0;											//RESETA ANIMACAO TIPO2		
+		h_scroll  = 0;											//RESETA ANIMACAO HORIZONTAL SCROLL		
 		TIMSK1 = 0X01;												//ATIVA TIMER1 (RESPONSAVEL POR ANIMACOES)
 		TIMSK0 = 0x01;												//ATIVA TIMER0 (RESPONSAVEL POR DISPLAY)
 	}

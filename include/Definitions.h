@@ -28,8 +28,8 @@
 
 //DIMENSOES DO DISPLAY
 
-#define  DISP_ROWS_QTY		5	//MAXIMO POSSIVEL: 8
-#define  DISP_COLUMNS_QTY	    32
+#define  DISP_ROWS_QTY		8	//MAXIMO POSSIVEL: 8
+#define  DISP_COLUMNS_QTY	88
 //-----------------------------------------------------
 
 //PINOS DO ATMEGA (PORTD)
@@ -41,12 +41,12 @@
 
 //DEFINICOES DE FLAGS
 
-#define  TMR1_OVER		0
-#define  STARTUP_FLAG	1
-#define  SLEEP_FLAG		2
-#define  ANIM_2			3
-#define  IMG3_CHANGED	4
-#define  IMG4_CHANGED	5
+// #define  TMR1_OVER		0
+// #define  STARTUP_FLAG	1
+// #define  SLEEP_FLAG		2
+// #define  ANIM_2			3
+// #define  IMG3_CHANGED	4
+// #define  IMG4_CHANGED	5
 
 //-----------------------------------------------------
 
