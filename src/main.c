@@ -208,7 +208,7 @@ PROGMEM const unsigned char IMAGES[39][5]  = {		//IMAGES[DIGITO][LINHA]
 };
 
 
-char STARTUP[7] = {0x43, 0x4F, 0x53, 0x4D, 0x4F, 0x53, KEYBOARD_ENTER} ;	//MENSAGEM INICIAL
+char STARTUP[7] = {0x48, 0x45, 0x4C, 0x4C, 0x4F, KEYBOARD_ENTER} ;	//MENSAGEM INICIAL: HELLO
 char BUFFER[BUFFER_SIZE];
 
 //-----------------------------------------------------
@@ -217,14 +217,14 @@ char BUFFER[BUFFER_SIZE];
 
 volatile char var_flags					= 0x00;
 volatile unsigned int buffer_data_size	= 0x00;		//UTILIZADA POR ANIMACAO TIPO2
-volatile unsigned int  eeprom_address	= 0x00;		//UTILIZADA PELA INTERRUPCAO SERIAL
+volatile int  eeprom_address			= 0x00;		//UTILIZADA PELA INTERRUPCAO SERIAL
 volatile unsigned char animation2		= 0x00;		//VARIAVEL UTILIZADA POR TIMER1
 volatile unsigned char line				= 0x00;		//VARIAVEL UTILIZADA POR TIMER0
 volatile unsigned char tmr2_aux         = 0x00;
 
 //-----------------------------------------------------
 
-//FUN��ES AUXILIARES
+//FUNCOES AUXILIARES
 
 
 void re_buffer(char *data);										//ATUALIZA CONTEUDO DE BUFFER
@@ -287,9 +287,9 @@ ISR(TIMER2_OVF_vect)	//RESPONSAVEL POR STARTUP
 }	
 
 ISR(USART_RX_vect)
-{	
-	unsigned char dado_recebido		= 0x00;					
-	unsigned char settings		    = 0x00;
+{		
+	unsigned char dado_recebido;					
+	unsigned char settings;	
 				
 	if (!SERIAL_RX_CHECK_ERROR())												//CASO NAO EXISTA ERRO REGISTRADO TRATA DADO
 	{
@@ -415,7 +415,7 @@ void re_buffer(char *data)	//FUNCAO RESPONSAVEL POR ALIMENTAR A VARIAVEL BUFFER
 			break;										//SAI DO LAÇO WHILE
 							
 		
-		// --- BLOCO PARA CONVERS�O ANCII ---
+		// --- BLOCO PARA CONVERSCO ANCII ---
 		if((caracter > 47) & (caracter < 58))		
 			caracter = caracter - 48;
 		
@@ -494,20 +494,12 @@ void display(char *data, unsigned char anim2, unsigned char linha)		//FUNCAO RES
 	}
 	// --- FIM BLOCO PARA DADOS (CARACTERES) ---
 		
-		
-	// --- BLOCO PARA LIMITA�AO FISICA ---	
-	for (i=0x00;i<0x04;i++)						//4 BITS FLUTUANTES
-		write_595(0X00,0);
-	// --- FIM BLOCO PARA LIMITACAO FISICA ---
-		
-	/*	COLLUM CONTROL - DESATIVADO POIS O ATMEGA VAI DRIVEAR OS TRANSISTORES COM OS PROPRIOS PINOS
+	//	COLLUM CONTROL
 	// --- BLOCO PARA LINHAS ---
 	for (i=0x00;i<0x08;i++)						//ESTE LAÇO PREENCHE O REGISTRADOR RESPONSAVEL PELAS LINHAS
-		write_595((0b10000000 >> linha),i);
-	// --- FIM BLOCO PARA LINHAS --- 
-	*/	
+		write_595( ((0b10000000 >> linha) ^ 0xff), i );
+	// --- FIM BLOCO PARA LINHAS --- 	
 	
-	PORTC = (0b00000001 << linha);		
 	query_595();								//QUERY PARA LINHA ATUAL
 				
 	
