@@ -28,8 +28,8 @@
 
 //DIMENSOES DO DISPLAY
 
-#define  DISP_LINES		5	//MAXIMO POSSIVEL: 8
-#define  DISP_ROWS	    32
+#define  DISP_ROWS_QTY		5	//MAXIMO POSSIVEL: 8
+#define  DISP_COLUMNS_QTY	    32
 //-----------------------------------------------------
 
 //PINOS DO ATMEGA (PORTD)
@@ -58,7 +58,7 @@
 #define  KEYBOARD_UNDERLINE	0x5F	//TECLA |_| (UNDERLINE)
 #define  KEYBOARD_I			0X49	//TECLA |I| 
 #define  KEYBOARD_S			0X53	//TECLA |S| 
-#define  KEYBOARD_O			0X4F	//TECLA |O| 
+#define  KEYBOARD_0			0X30	//TECLA |0| 
 #define  KEYBOARD_1			0X31	//TECLA |1| 
 #define  animation1_speed	60
 #define  CALL_EEPROM		0x00
@@ -68,7 +68,7 @@
 
 //MACROS
 
-#define TURN_OFF_DISP() PORTC = 0b00000000;
+//#define TURN_OFF_DISP() PORTC = 0b00000000;
 
 
 //-----------------------------------------------------

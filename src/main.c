@@ -246,22 +246,22 @@ ISR(TIMER0_OVF_vect)	//RESPONSAVEL POR CHAMAR A FUNCAO 'DISPLAY'
 {	
 	display(BUFFER, animation2, line);	
 	line ++;
-	if(line >= DISP_LINES)
+	if(line >= DISP_ROWS_QTY)
 		line = 0x00;	
 }
 
 ISR(TIMER1_OVF_vect)	//RESPONSAVEL POR: ANIMACAO TIPO 2
 {
 	//CASO VALOR DE animation2 FOR 0, O DISPLAY ESTAR EXIBINDO EM SUA ULTIMA COLUNA O CONDEUDO, OU SEJA O DISPLAY NUNCA FICAR VAZIO.
-	//PARA CENTRALIZAR O TEXTO O VALOR DE animation2 DEVE SER DISP_ROWS-1
+	//PARA CENTRALIZAR O TEXTO O VALOR DE animation2 DEVE SER DISP_COLUMNS_QTY-1
 	
 	TCNT1L = 0XEE;										//INICIALIZA TIMER1 EM 34286
 	TCNT1H = 0X85;										//...	
 	
-	if (buffer_data_size>DISP_ROWS)						//O CONTEUDO DO TEXTO E MAIOR QUE O DISPLAY?
+	if (buffer_data_size>DISP_COLUMNS_QTY)						//O CONTEUDO DO TEXTO E MAIOR QUE O DISPLAY?
 	{													//SIM, EXECUTA ANIMACAO TIPO 2
 		animation2 ++;
-		if (animation2 >= (buffer_data_size+DISP_ROWS)-1)	//TEXTO ROLOU COMPLETAMENTE?
+		if (animation2 >= (buffer_data_size+DISP_COLUMNS_QTY)-1)	//TEXTO ROLOU COMPLETAMENTE?
 		{
 			animation2 = 0x00;							//RESETA
 		}
@@ -269,7 +269,7 @@ ISR(TIMER1_OVF_vect)	//RESPONSAVEL POR: ANIMACAO TIPO 2
 	
 	else
 	{													//NAO?			
-		animation2  = DISP_ROWS-1;						//CENTRALIZA TEXTO
+		animation2  = DISP_COLUMNS_QTY-1;						//CENTRALIZA TEXTO
 		TIMSK1 = 0X00;									//TIMER1 NAO SE FAZ NECESSARIO ATE PROXIMO REBUFFER
 	}
 	
@@ -312,16 +312,12 @@ ISR(USART_RX_vect)
 					invert_bit(settings,6);										//BIT DE VELOCIDADE						
 					break;														//SAI DO LAÇO SWITCH
 			
-				case KEYBOARD_O:												//TECLA |O| PRESSIONADA?_MODO SLEEP					
-					TURN_OFF_DISP();												
-					TIMSK1 = 0X00;												//DESLIGA TIMER1 (RESPONSAVEL POR ANIMACOES)
-					TIMSK0 = 0x00;												//DESLIGA TIMER0 (RESPONSAVEL POR DISPLAY)
+				case KEYBOARD_0:												//TECLA |0| PRESSIONADA?_MODO SLEEP					
+					sleep_mode(0x01);	
 					break;
 			
 				case KEYBOARD_1:												//TECLA |1| PRESSIONADA?_RETORNA DO MODO SLEEP		
-					animation2  = 0;											//RESETA ANIMACAO TIPO2		
-					TIMSK1 = 0X01;												//ATIVA TIMER1 (RESPONSAVEL POR ANIMACOES)
-					TIMSK0 = 0x01;												//ATIVA TIMER0 (RESPONSAVEL POR DISPLAY)
+					sleep_mode(0x00);
 					break;
 				
 				default:														//OUTRO CARACTER PRESSIONADO?
@@ -452,7 +448,7 @@ void re_buffer(char *data)	//FUNCAO RESPONSAVEL POR ALIMENTAR A VARIAVEL BUFFER
 		buffer_index++;								//INCREMENTA O CONTADOR AUXILIAR			
 		data_index++;								//INCREMENTA O CONTADOR AUXILIAR	
 		
-		if((data_index > BUFF_DATA_LIMIT) ||(buffer_index>BUFFER_SIZE-DISP_ROWS))			//CONDICAO DE ERRO, CASO A LEITURA CHEGUE A LIMITE ESTIPULADO
+		if((data_index > BUFF_DATA_LIMIT) ||(buffer_index>BUFFER_SIZE-DISP_COLUMNS_QTY))			//CONDICAO DE ERRO, CASO A LEITURA CHEGUE A LIMITE ESTIPULADO
 			/*
 				LIMITE 1: LIMITE DA EEPROM
 				LIMITE 2: LIMITE DO BUFFER, CONSIDERANDO ESPAÇO PARA O FIM NA ANIMAÇAO TIPO 2
@@ -476,21 +472,21 @@ void display(char *data, unsigned char anim2, unsigned char linha)		//FUNCAO RES
 	
 		
 	// --- BLOCO PARA DADOS (CARACTERES) ---
-	if(DISP_ROWS>anim2)	//PROCESSO INICIAL DE ANIMAÇAO TIPO2 QUANDO OS CARACTERES CHEGAM DO LADO DIREITO E PREENCHEM COMPLETAMENTE O DISPLAY
+	if(DISP_COLUMNS_QTY>anim2)	//PROCESSO INICIAL DE ANIMAÇAO TIPO2 QUANDO OS CARACTERES CHEGAM DO LADO DIREITO E PREENCHEM COMPLETAMENTE O DISPLAY
 	{					// DISPLAY: [____<-XXXX]
 	
 		for(i=anim2; i != 0xFF; i--)			//LAÇO RESPONSAVEL POR CONTROLAR OS BITS INDIVIDUAIS DOS CARACTERES
 			write_595(*(data+i),linha);				
 			
-		for (i=0x01;i<DISP_ROWS-anim2;i++)		//LAÇO COMPLEMENTA ANIMACAO COM ESPAÇO INICIAL VAZIO 
+		for (i=0x01;i<DISP_COLUMNS_QTY-anim2;i++)		//LAÇO COMPLEMENTA ANIMACAO COM ESPAÇO INICIAL VAZIO 
 			write_595(0X00,0);
 	}			
 	
 	else	//EXECUTADO QUANDO CARACTERES SE DESLOCAM PARA ESQUERDA
 	{		//DISPLAY: [XXXXXXXX] (TOTALMENTE PREENCHIDO)
 		
-		for(i=DISP_ROWS; i > 0x00; i--)				//LAÇO RESPONSAVEL POR CONTROLAR OS BITS INDIVIDUAIS DOS CARACTERES
-			write_595(*(data+(i+(anim2-DISP_ROWS))),linha);	//LEMBRAR QUE 'anim2' PUSSUI NO MINIMO VALOR IGUAL A 'DISP_ROWS'			
+		for(i=DISP_COLUMNS_QTY; i > 0x00; i--)				//LAÇO RESPONSAVEL POR CONTROLAR OS BITS INDIVIDUAIS DOS CARACTERES
+			write_595(*(data+(i+(anim2-DISP_COLUMNS_QTY))),linha);	//LEMBRAR QUE 'anim2' PUSSUI NO MINIMO VALOR IGUAL A 'DISP_COLUMNS_QTY'			
 	}
 	// --- FIM BLOCO PARA DADOS (CARACTERES) ---
 		
@@ -506,6 +502,7 @@ void display(char *data, unsigned char anim2, unsigned char linha)		//FUNCAO RES
 }//display()
 
 void setup()
+
 {
 	unsigned char settings = EEPROM_Read(999);
 		
@@ -517,4 +514,20 @@ void setup()
 	TCCR1B = 0X04;
 	// --- BLOCO CONTROLE DE VELOCIDADE DE ANIMACAO TIPO 2 ---	
 	
+}
+
+void sleep_mode(char mode){
+	if (mode) {
+		TIMSK1 = 0X00;												//DESLIGA TIMER1 (RESPONSAVEL POR ANIMACOES)
+		TIMSK0 = 0x00;												//DESLIGA TIMER0 (RESPONSAVEL POR DISPLAY)
+		for (char i=0x00;i<0x08;i++) {								//DESLIGA O DISPLAY
+			write_595(0xff, i);		
+			query_595();
+		}
+	}
+	else {
+		animation2  = 0;											//RESETA ANIMACAO TIPO2		
+		TIMSK1 = 0X01;												//ATIVA TIMER1 (RESPONSAVEL POR ANIMACOES)
+		TIMSK0 = 0x01;												//ATIVA TIMER0 (RESPONSAVEL POR DISPLAY)
+	}
 }
