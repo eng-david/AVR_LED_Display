@@ -52,7 +52,7 @@
 
 //CONSTANTES
 			
-#define  BUFFER_SIZE		240
+#define  BUFFER_SIZE		0xFF
 #define  KEYBOARD_LF        0x0A    //CHAR  |LF|
 #define  KEYBOARD_ENTER		0x0D	//TECLA |ENTER|
 #define  KEYBOARD_UNDERLINE	0x5F	//TECLA |_| (UNDERLINE)
@@ -60,7 +60,7 @@
 #define  KEYBOARD_S			0X53	//TECLA |S| 
 #define  KEYBOARD_0			0X30	//TECLA |0| 
 #define  KEYBOARD_1			0X31	//TECLA |1| 
-#define  animation1_speed	60
+//#define  animation1_speed	60
 #define  CALL_EEPROM		0x00
 #define  BUFF_DATA_LIMIT    998
 
