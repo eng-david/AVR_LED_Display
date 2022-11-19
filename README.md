@@ -1,4 +1,5 @@
 # AVR LED Display
+![Development Status Badge](https://img.shields.io/badge/Status-Concluded-green)
 
 This software implements in AVR Atmega328 microcontroller a driver for monocrome 8xN display for ASCII characteres, with horizontal animation.
 
